@@ -1,4 +1,4 @@
-import render from './render'
+import renderDom from './renderDom'
 
 export default function wkPreview(options = {}) {
   options.mount ??= document.body
@@ -6,7 +6,7 @@ export default function wkPreview(options = {}) {
   options.currentIndex ??= 0;
 
   if(options.sourceList.length) {
-    render(options)
+    renderDom(options)
   } else {
     throw new Error('Media resources is required')
   }
