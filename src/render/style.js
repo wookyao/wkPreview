@@ -1,4 +1,4 @@
- import {isMobile} from './utils'
+ import {isMobile} from '../utils'
 
  const isM = isMobile()
 

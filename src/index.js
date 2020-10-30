@@ -1,4 +1,4 @@
-import renderDom from './renderDom'
+import renderDom from './render/renderDom'
 
 export default function wkPreview(options = {}) {
   options.mount ??= document.body
