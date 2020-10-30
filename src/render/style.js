@@ -73,6 +73,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   max-height: 96vh;
+  max-width: 96%;
   border-radius: 4px;
   border: 2px solid #eee;
   overflow: hidden;

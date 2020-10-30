@@ -1,14 +1,20 @@
 import {createElement as h, render} from './render'
 import style from './style'
+import {
+  PREVIEW_MASK,
+  PREVIEW_BTN_PRE,
+  PREVIEW_BTN_NEXT,
+  PREVIEW_STAGE
+} from '../config'
 
 const previewBtnPre = h('div', {
-  id: 'JS-preview-btn-pre',
+  id: PREVIEW_BTN_PRE,
   style: style.btnPre
 }, [
   h('span', {style: style.preIcon})
 ])
 const previewBtnNext = h('div', {
-  id: 'JS-preview-btn-next',
+  id: PREVIEW_BTN_NEXT,
   style: style.btnNext
 },[
   h('span', {style: style.nextIcon})
@@ -19,7 +25,7 @@ const stage = (options) => {
   let imgUrl = sourceList[currentIndex] || ''
 
   return h('img', {
-    id: 'JS-preview-stage',
+    id: PREVIEW_STAGE,
     style: style.stage,
     src: imgUrl
   })
@@ -30,7 +36,7 @@ const stage = (options) => {
 function template(options) {
   const {sourceList} = options
   let node = h('div', {
-    id: "JS-Preview-mask",
+    id: PREVIEW_MASK,
     style: style.previewMask
   }, [
     sourceList.length > 1 ?  previewBtnPre : '',
