@@ -6,6 +6,7 @@ export default function wkPreview(options = {}) {
   options.sourceList ??= [];
   options.currentIndex ??= 0;
   options.loop ??= false;
+  options.zoom ??= 5;
 
   if(options.sourceList.length) {
     renderDom(options)

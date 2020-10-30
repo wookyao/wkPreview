@@ -18,6 +18,7 @@ export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
     }
     curImg = sourceList[--curIdx];
     $Stage.setAttribute('src', curImg)
+    $Stage.style.transform = `translate(-50%, -50%) scale(1)`
   })
 
   // 下一张
@@ -31,6 +32,13 @@ export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
     } 
     curImg = sourceList[++curIdx];
     $Stage.setAttribute('src', curImg)
+    $Stage.style.transform = `translate(-50%, -50%) scale(1)`
   })
+
+
+  on($Stage, 'load', () => {
+    console.log(555)
+  })
+
 
 }

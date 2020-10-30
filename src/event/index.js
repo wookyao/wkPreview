@@ -12,5 +12,5 @@ export default function event (options) {
     $btnPre = document?.getElementById?.(PREVIEW_BTN_PRE),
     $btnNext = document?.getElementById?.(PREVIEW_BTN_NEXT);
   controlSwitch(options, $Stage, $btnPre, $btnNext);
-  zoom($Stage)
+  zoom($Stage, options)
 }
