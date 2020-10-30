@@ -1,21 +1,14 @@
-import {
-  PREVIEW_BTN_PRE,
-  PREVIEW_BTN_NEXT,
-  PREVIEW_STAGE
-} from '../config'
+import {on} from '../utils'
 
-export default function controllSwitch(options) {
+export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
   const {sourceList, loop} = options;
   let 
-    $Stage = document?.getElementById?.(PREVIEW_STAGE),
-    $btnPre = document?.getElementById?.(PREVIEW_BTN_PRE),
-    $btnNext = document?.getElementById?.(PREVIEW_BTN_NEXT),
     curIdx = options.currentIndex,
     sourceLength = sourceList.length,
     curImg = '';
   
   // 上一张
-  $btnPre.addEventListener('click', () => {
+  on($btnPre, 'click', () => {
     if(curIdx == 0) {
       if(loop) {
         curIdx = sourceLength;
@@ -28,7 +21,7 @@ export default function controllSwitch(options) {
   })
 
   // 下一张
-  $btnNext.addEventListener('click', () => {
+  on($btnNext, 'click', () => {
     if(curIdx >= sourceLength - 1) {
       if(loop) {
         curIdx = -1;
