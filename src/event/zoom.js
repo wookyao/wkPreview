@@ -1,12 +1,12 @@
-import {on, isFirefox, isMobile, rafThrottle} from '../utils'
+import { on, isFirefox, isMobile, rafThrottle } from '../utils'
 import store from '../store'
 
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel';
 
 const Scale = (delta) => {
-  const {$stage, previewOptions} = store.state;
+  const { $stage, previewOptions } = store.state;
   let zoom = previewOptions?.zoom ?? 5;
-  let diff = (delta / 120) * 0.015;
+  let diff = (delta / 120) * 0.035;
   let scale = store.state.scale;
   scale = scale + diff;
   scale = scale < 0.3 ? 0.3 : scale > zoom ? zoom : scale;
@@ -20,10 +20,10 @@ const _mouseWheelHanlder = rafThrottle(e => {
   Scale(delta)
 })
 
-export default function zoom () {
-  if(isMobile()) {
+export default function zoom() {
+  if (isMobile()) {
 
   } else {
-    on(document, mousewheelEventName,_mouseWheelHanlder)
+    on(document, mousewheelEventName, _mouseWheelHanlder)
   }
 }

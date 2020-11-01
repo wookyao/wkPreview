@@ -2,7 +2,10 @@ import { on } from '../utils'
 import store from '../store'
 
 export default function controllSwitch() {
-  const { previewOptions, $btnPre, $btnNext, $stage, $previewMask, $btnClose } = store.state
+  const {
+    previewOptions,
+    $btnPre, $btnNext, $stage, $previewMask, $btnClose
+  } = store.state
   const { sourceList, loop, mount } = previewOptions;
 
   let
