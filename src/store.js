@@ -6,11 +6,14 @@ const store = {
     $btnPre: null,
     $btnNext: null,
     $btnClose: null,
+    $previewMask: null,
     previewOptions: {}
   },
 
   commit(fnName, value) {
-    this.actions[fnName].call(this, value)
+    try {
+      this.actions[fnName].call(this, value)
+    } catch { }
   },
   actions: {
     set_scale(val) {
@@ -31,6 +34,20 @@ const store = {
     set_node_btn_close(node) {
       store.state.$btnClose = node
     },
+    set_node_preview(node) {
+      store.state.$previewMask = node
+    },
+    reset_state() {
+      store.state = {
+        scale: 1,
+        $stage: null,
+        $btnPre: null,
+        $btnNext: null,
+        $btnClose: null,
+        $previewMask: null,
+        previewOptions: {}
+      }
+    }
   }
 }
 

@@ -10,12 +10,12 @@ export default function wkPreview(options = {}) {
   options.zoom ??= 5;
   store.commit('set_preview_options', options)
 
-  if(options.sourceList.length) {
+  if (options.sourceList.length) {
     renderDom(options)
-    event.call(this,options)
+    event.call(this)
   } else {
     throw new Error('Media resources is required')
   }
+
   console.log(store)
-  
 }

@@ -1,19 +1,19 @@
-import {on} from '../utils'
+import { on } from '../utils'
 import store from '../store'
 
 export default function controllSwitch() {
-  const {previewOptions,$btnPre,$btnNext, $stage,} = store.state
-  const {sourceList, loop} = previewOptions;
-  
-  let 
+  const { previewOptions, $btnPre, $btnNext, $stage, $previewMask, $btnClose } = store.state
+  const { sourceList, loop, mount } = previewOptions;
+
+  let
     curIdx = previewOptions.currentIndex,
     sourceLength = sourceList.length,
     curImg = '';
-  
+
   // 上一张
   on($btnPre, 'click', () => {
-    if(curIdx == 0) {
-      if(loop) {
+    if (curIdx == 0) {
+      if (loop) {
         curIdx = sourceLength;
       } else {
         return false
@@ -27,16 +27,22 @@ export default function controllSwitch() {
 
   // 下一张
   on($btnNext, 'click', () => {
-    if(curIdx >= sourceLength - 1) {
-      if(loop) {
+    if (curIdx >= sourceLength - 1) {
+      if (loop) {
         curIdx = -1;
       } else {
         return false
       }
-    } 
+    }
     curImg = sourceList[++curIdx];
     $stage.setAttribute('src', curImg)
     store.commit('set_scale', 1)
     $stage.style.transform = `translate(-50%, -50%) scale(1)`
+  })
+
+  // 关闭
+  on($btnClose, 'click', () => {
+    mount.removeChild($previewMask);
+    store.commit('reset_state')
   })
 }
