@@ -1,4 +1,5 @@
 import {on} from '../utils'
+import store from '../store'
 
 export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
   const {sourceList, loop} = options;
@@ -17,7 +18,8 @@ export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
       }
     }
     curImg = sourceList[--curIdx];
-    $Stage.setAttribute('src', curImg)
+    $Stage.setAttribute('src', curImg);
+    store.commit('set_scale', 1)
     $Stage.style.transform = `translate(-50%, -50%) scale(1)`
   })
 
@@ -32,6 +34,7 @@ export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
     } 
     curImg = sourceList[++curIdx];
     $Stage.setAttribute('src', curImg)
+    store.commit('set_scale', 1)
     $Stage.style.transform = `translate(-50%, -50%) scale(1)`
   })
 

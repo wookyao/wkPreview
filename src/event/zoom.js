@@ -1,4 +1,5 @@
 import {on, isFirefox, isMobile, rafThrottle} from '../utils'
+import store from '../store'
 
 const mousewheelEventName = isFirefox() ? 'DOMMouseScroll' : 'mousewheel';
 let SCALE = 1;
@@ -7,9 +8,11 @@ let ZOOM = 1;
 
 const Scale = (delta) => {
   let diff = (delta / 120) * 0.015;
-  SCALE = SCALE + diff;
-  SCALE = SCALE < 0.3 ? 0.3 : SCALE > ZOOM ? ZOOM : SCALE
-  $EL.style.transform = `translate(-50%, -50%) scale(${SCALE})`
+  let scale = store.state.scale;
+  scale = scale + diff;
+  scale = scale < 0.3 ? 0.3 : scale > ZOOM ? ZOOM : scale;
+  store.commit('set_scale', scale)
+  $EL.style.transform = `translate(-50%, -50%) scale(${store.state.scale})`
 }
 
 // delta > 0 放大 反之 缩小

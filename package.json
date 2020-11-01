@@ -12,7 +12,12 @@
     "clean": "npm run clearLib && npm run clearDist",
     "build:pro": "npm run clearLib && cross-env APP_ENV=production npm run build"
   },
-  "keywords": ["preview", "wookyao", "vue preview", "react preview"],
+  "keywords": [
+    "preview",
+    "wookyao",
+    "vue preview",
+    "react preview"
+  ],
   "author": "YaoXu <wook.yao@foxmail.com>",
   "license": "MIT",
   "devDependencies": {
