@@ -9,13 +9,15 @@ import {
 
 const previewBtnPre = h('div', {
   id: PREVIEW_BTN_PRE,
-  style: style.btnPre
+  style: style.btnPre,
+  storeCommit: 'set_node_btn_pre'
 }, [
   h('span', {style: style.preIcon})
 ])
 const previewBtnNext = h('div', {
   id: PREVIEW_BTN_NEXT,
-  style: style.btnNext
+  style: style.btnNext,
+  storeCommit: 'set_node_btn_next'
 },[
   h('span', {style: style.nextIcon})
 ])
@@ -27,10 +29,11 @@ const stage = (options) => {
   return h('img', {
     id: PREVIEW_STAGE,
     style: style.stage,
-    src: imgUrl
+    src: imgUrl,
+    storeCommit: 'set_node_stage'
   })
+  
 }
-
 
 
 function template(options) {
@@ -43,7 +46,6 @@ function template(options) {
     stage(options),
     sourceList.length > 1 ? previewBtnNext : ''
   ]);
-
 
   return render(node)
 }

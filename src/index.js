@@ -1,3 +1,4 @@
+import store from './store'
 import renderDom from './render/renderDom'
 import event from './event/index'
 
@@ -7,6 +8,7 @@ export default function wkPreview(options = {}) {
   options.currentIndex ??= 0;
   options.loop ??= false;
   options.zoom ??= 5;
+  store.commit('set_preview_options', options)
 
   if(options.sourceList.length) {
     renderDom(options)
@@ -14,5 +16,6 @@ export default function wkPreview(options = {}) {
   } else {
     throw new Error('Media resources is required')
   }
+  console.log(store)
   
 }

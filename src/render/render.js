@@ -1,4 +1,5 @@
 import Element from "./Element.class";
+import store from '../store'
 
 function createElement(tagName, attrs, children) {
   return new Element(tagName, attrs, children);
@@ -10,6 +11,11 @@ function render(vDom) {
   let el = document.createElement(tagName);
 
   setNodeAttr(el, attrs);
+
+
+  if('storeCommit' in attrs) {
+    store.commit(attrs['storeCommit'], el)
+  }
 
   if (typeof children === "string") {
     let textNode = document.createTextNode(children);
@@ -46,7 +52,7 @@ function setNodeAttr(node, attrs) {
           node.style[styleKey] = value[styleKey];
         }
       }
-    } else {
+    } else if (key != 'storeCommit') {
       node.setAttribute(key, value);
     }
   }

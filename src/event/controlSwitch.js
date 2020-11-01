@@ -1,10 +1,12 @@
 import {on} from '../utils'
 import store from '../store'
 
-export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
-  const {sourceList, loop} = options;
+export default function controllSwitch() {
+  const {previewOptions,$btnPre,$btnNext, $stage,} = store.state
+  const {sourceList, loop} = previewOptions;
+  
   let 
-    curIdx = options.currentIndex,
+    curIdx = previewOptions.currentIndex,
     sourceLength = sourceList.length,
     curImg = '';
   
@@ -18,9 +20,9 @@ export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
       }
     }
     curImg = sourceList[--curIdx];
-    $Stage.setAttribute('src', curImg);
+    $stage.setAttribute('src', curImg);
     store.commit('set_scale', 1)
-    $Stage.style.transform = `translate(-50%, -50%) scale(1)`
+    $stage.style.transform = `translate(-50%, -50%) scale(1)`
   })
 
   // 下一张
@@ -33,15 +35,8 @@ export default function controllSwitch(options, $Stage, $btnPre, $btnNext) {
       }
     } 
     curImg = sourceList[++curIdx];
-    $Stage.setAttribute('src', curImg)
+    $stage.setAttribute('src', curImg)
     store.commit('set_scale', 1)
-    $Stage.style.transform = `translate(-50%, -50%) scale(1)`
+    $stage.style.transform = `translate(-50%, -50%) scale(1)`
   })
-
-
-  on($Stage, 'load', () => {
-    console.log(555)
-  })
-
-
 }
