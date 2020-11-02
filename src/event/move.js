@@ -1,4 +1,4 @@
-import { on, off, isMobile } from '../utils'
+import { on, off, rafThrottle } from '../utils'
 import store from '../store'
 
 export default function move() {
@@ -6,35 +6,32 @@ export default function move() {
 
   let x, y, l, t, isMove = false;
 
-
   on($stage, 'mousedown', e => {
-    //获取x坐标和y坐标
-    x = e.clientX;
-    y = e.clientY;
 
-    //获取左部和顶部的偏移量
-    l = $stage.offsetLeft;
-    t = $stage.offsetTop;
-    isMove = true
+    const [offsetX, offsetY] = [$stage.offsetLeft, $stage.offsetTop];
+    const [stageW, stageH] = [$stage.offsetWidth, $stage.offsetHeight];
 
-    on($stage, 'mousemove', e => {
-      if (!isMove) return;
-      let
-        nx = e.clientX,
-        ny = e.clientY;
-      let disX = nx - (x - l)
-      let disY = ny - (y - t)
-      $stage.style.left = `${disX}px`
-      $stage.style.top = `${disY}px`
+    const startX = e.pageX;
+    const startY = e.pageY;
 
-      on($stage, 'mouseup', e => {
-        isMove = false
-        on($stage, 'mousedown', null)
-        on($stage, 'mousemove', null)
-      })
+    const _dragHandler = rafThrottle(ev => {
+      let left = offsetX + ev.pageX - startX
+      let top = offsetY + ev.pageY - startY
+
+      if(left <= 0) {
+        left = 0
+      } else if (left >= window.innerWidth - stageW) {}
+
+      $stage.style.left = left + 'px';
+      $stage.style.top = top + 'px';
     })
 
-
+    on(document, 'mousemove', _dragHandler);
+    on(document, 'mouseup', ev => {
+      off(document, 'mousemove', _dragHandler)
+    })
+    e.preventDefault();
   })
+
 
 }
