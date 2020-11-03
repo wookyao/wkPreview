@@ -8,6 +8,15 @@ export default function wkPreview(options = {}) {
   options.currentIndex ??= 0;
   options.loop ??= false;
   options.zoom ??= 5;
+
+  let limit = options.sourceList.length - 1;
+  if(options.currentIndex > limit) {
+    options.currentIndex = limit
+  }
+  if(options.currentIndex < 0) {
+    options.currentIndex = 0
+  }
+
   store.commit('set_preview_options', options)
 
   if (options.sourceList.length) {
