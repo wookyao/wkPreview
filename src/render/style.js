@@ -72,7 +72,7 @@ const stage = `
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   max-height: 96vh;
   max-width: 96%;
   border-radius: 4px;
@@ -80,7 +80,7 @@ const stage = `
   overflow: hidden;
   cursor: pointer;
   object-fit: contain;
-  transition: all ease 0.05s;
+  transition: transform ease 0.05s;
 `
 
 const btnClose = `

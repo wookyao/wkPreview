@@ -1,5 +1,6 @@
 import { on } from '../utils'
 import store from '../store'
+import style from '../render/style'
 
 export default function controllSwitch() {
   const {
@@ -25,7 +26,7 @@ export default function controllSwitch() {
     curImg = sourceList[--curIdx];
     $stage.setAttribute('src', curImg);
     store.commit('set_scale', 1)
-    $stage.style.transform = `translate(-50%, -50%) scale(1)`
+    $stage.style.cssText = style.stage;
   })
 
   // 下一张
@@ -40,7 +41,7 @@ export default function controllSwitch() {
     curImg = sourceList[++curIdx];
     $stage.setAttribute('src', curImg)
     store.commit('set_scale', 1)
-    $stage.style.transform = `translate(-50%, -50%) scale(1)`
+    $stage.style.cssText = style.stage;
   })
 
   // 关闭
