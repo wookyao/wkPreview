@@ -1,15 +1,10 @@
-import { on, off, rafThrottle } from '../utils'
+import { on, off, rafThrottle, isMobile } from '../utils'
 import store from '../store'
 
-export default function move() {
+const drag = () => {
   const { $stage } = store.state
-
-  let x, y, l, t, isMove = false;
-
   on($stage, 'mousedown', e => {
-
     const [offsetX, offsetY] = [$stage.offsetLeft, $stage.offsetTop];
-    const [stageW, stageH] = [$stage.offsetWidth, $stage.offsetHeight];
 
     const startX = e.pageX;
     const startY = e.pageY;
@@ -18,9 +13,6 @@ export default function move() {
       let left = offsetX + ev.pageX - startX
       let top = offsetY + ev.pageY - startY
 
-      if(left <= 0) {
-        left = 0
-      } else if (left >= window.innerWidth - stageW) {}
 
       $stage.style.left = left + 'px';
       $stage.style.top = top + 'px';
@@ -32,6 +24,14 @@ export default function move() {
     })
     e.preventDefault();
   })
+}
 
+
+export default function move() {
+  const isM = isMobile();
+
+  if (isM) { } else {
+    drag.call(this)
+  }
 
 }
