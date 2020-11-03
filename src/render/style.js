@@ -80,6 +80,7 @@ const stage = `
   overflow: hidden;
   cursor: pointer;
   object-fit: contain;
+  transition: all ease 0.05s;
 `
 
 const btnClose = `
