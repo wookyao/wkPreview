@@ -18,6 +18,7 @@ const Scale = (delta) => {
 // delta > 0 放大 反之 缩小
 const _mouseWheelHanlder = rafThrottle(e => {
   const delta = e?.wheelDelta ?? -e.detail;
+  e.preventDefault();
   Scale(delta)
 })
 
