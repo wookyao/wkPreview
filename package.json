@@ -1,6 +1,6 @@
 {
   "name": "wk-preview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "原生支持PC和移动端的图片预览",
   "main": "lib/wk_preview.min.js",
   "scripts": {
