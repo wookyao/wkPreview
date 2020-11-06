@@ -1,4 +1,4 @@
-import { on, isFirefox, isMobile, rafThrottle } from "../utils";
+import { on, off, isFirefox, isMobile, rafThrottle } from "../utils";
 import store from "../store";
 import setGesture from "./pinch";
 
@@ -17,6 +17,11 @@ const Scale = (delta) => {
 
 // delta > 0 放大 反之 缩小
 const _mouseWheelHanlder = rafThrottle((e) => {
+  const { $stage } = store.state;
+  if(!$stage) {
+    off(document, mousewheelEventName, _mouseWheelHanlder);
+    return
+  }
   const delta = e?.wheelDelta ?? -e.detail;
   Scale(delta);
 

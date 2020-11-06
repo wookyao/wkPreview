@@ -20,6 +20,7 @@ export default function wkPreview(options = {}) {
   store.commit('set_preview_options', options)
 
   if (options.sourceList.length) {
+    document.body.style.overflow = 'hidden'
     renderDom(options)
     event.call(this)
   } else {
